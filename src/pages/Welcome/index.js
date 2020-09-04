@@ -1,4 +1,5 @@
 import React from "react"
+import {useHistory} from 'react-router-dom'
 
 import bg from "./welcome-bg-2.jpg"
 
@@ -22,7 +23,8 @@ const styles = makeStyles(() => ({
   },
 }))
 
-const Welcome = ()
+const Welcome = () => {
+    const history= useHistory()
   const classes = styles()
   return (
     <Container disableGutters maxWidth="false" className={classes.container}>
@@ -43,6 +45,7 @@ const Welcome = ()
               variant="contained"
               color="primary"
               className={classes.button}
+              onClick={()=> history.push("/form")}
             >
               Entrar
             </Button>
