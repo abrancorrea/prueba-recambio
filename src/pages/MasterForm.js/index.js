@@ -8,7 +8,7 @@ import {
   Card,
   Grid,
 } from "@material-ui/core"
-import { Spacer } from "../../common/styledElements"
+import { Spacer } from "../../common/StyledElements"
 import PersonalData from "./PersonalData"
 
 const dataInitialState = {

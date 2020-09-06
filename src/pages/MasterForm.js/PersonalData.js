@@ -9,15 +9,10 @@ import {
   InputAdornment,
   Fade,
 } from "@material-ui/core"
-import { Spacer } from "../../common/styledElements"
+import { Spacer } from "../../common/StyledElements"
 
-const styles = makeStyles(() => ({
-  container: {
-    padding: "50px 20px 30px",
-  },
-}))
-const PersonalData = ({ data, setter, nextStep }) => {
-  const classes = styles()
+
+const PersonalData = ({ data, setter, nextStep, classes }) => {
   return (
     <Grid
       container
