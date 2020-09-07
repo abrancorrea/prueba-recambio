@@ -6,8 +6,6 @@ import {
   TextField,
   Button,
   InputAdornment,
-  makeStyles,
-  Fade,
 } from "@material-ui/core"
 import { Spacer } from "../../common/StyledElements"
 

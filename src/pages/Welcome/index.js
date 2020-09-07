@@ -27,7 +27,7 @@ const Welcome = () => {
   const history = useHistory();
   const classes = styles();
   return (
-    <Container disableGutters maxWidth="false" className={classes.container}>
+    <Container disableGutters maxWidth={false} className={classes.container}>
       <Grid container justify="center" alignItems="center">
         <Grid item xs={11} sm={8} md={7}>
           <Grid

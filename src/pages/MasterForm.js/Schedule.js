@@ -3,23 +3,18 @@ import React from "react"
 import {
   Typography,
   Grid,
-  TextField,
   Button,
-  InputAdornment,
-  makeStyles,
-  Fade,
   List,
   ListItem,
   ListItemText,
   AppBar,
   Tabs,
-  Box,
   Tab
   } from "@material-ui/core"
 import { Spacer } from "../../common/StyledElements"
 
-function TabPanel(props) {
-  const { day, children, value, index, selectedHour, hourHandler, ...other } = props;
+
+function TabPanel({ day, children, value, index, selectedHour, hourHandler, availableHours, hoursMap, ...other }) {
 
   return (
     <div
@@ -31,27 +26,23 @@ function TabPanel(props) {
     >
       {value === index && (
         <List component="nav" aria-label="list schedule hours">
-        <ListItem
-          button
-          selected={selectedHour.hour === "7:00 a 9:00" && selectedHour.day === `${day.dayName} ${day.monthDate}`}
-          onClick={(event) => hourHandler(event, "7:00 a 9:00", `${day.dayName} ${day.monthDate}`)}
-        >
-          <ListItemText primary="7:00 a 9:00" />
+           { Object.entries(availableHours).map( availableHour => (
+           <ListItem
+             button
+             selected={selectedHour.hour === availableHour[0] && selectedHour.day === `${day.dayName} ${day.monthDate}`}
+             disabled={!availableHour[1]}
+             onClick={(event) => hourHandler(event, availableHour[0], `${day.dayName} ${day.monthDate}`)}
+             >
+          <ListItemText primary={hoursMap.find(hour => hour.value === availableHour[0]).nameToShow} />
         </ListItem>
-        <ListItem
-          button
-          selected={selectedHour.hour === "9:00 a 11:00" && selectedHour.day === `${day.dayName} ${day.monthDate}`}
-          onClick={(event) => hourHandler(event, "9:00 a 11:00",`${day.dayName} ${day.monthDate}`)}
-        >
-          <ListItemText primary="9:00 a 11:00" />
-        </ListItem>
+        ))}
       </List>
       )}
     </div>
   );
 }
 
-const Schedule= ({ daysList, hourHandler, selectedHour, tabPosition, setTabPosition, nextStep, classes }) => {
+const Schedule= ({ daysList, hourHandler, selectedHour, tabPosition, setTabPosition, nextStep, availableHours, hoursMap, classes }) => {
   return (
     <Grid
       container
@@ -87,12 +78,8 @@ const Schedule= ({ daysList, hourHandler, selectedHour, tabPosition, setTabPosit
         </Tabs>
       </AppBar>
       {daysList.map( (day,i) => (
-      <TabPanel day={day} value={tabPosition} selectedHour={selectedHour} hourHandler={hourHandler} index={i} />
+      <TabPanel  hoursMap={hoursMap} day={day} value={tabPosition} availableHours={availableHours} selectedHour={selectedHour} hourHandler={hourHandler} index={i} />
       ))}
-      {/* <TabPanel value={tabPosition} selectedHour={selectedHour} hourHandler={hourHandler} index={1} />
-      <TabPanel value={tabPosition} selectedHour={selectedHour} hourHandler={hourHandler} index={2} />
-      <TabPanel value={tabPosition} selectedHour={selectedHour} hourHandler={hourHandler} index={3} />
-      <TabPanel value={tabPosition} selectedHour={selectedHour} hourHandler={hourHandler} index={4} /> */}
       {/* </Fade> */}
         <Spacer height="50px" />
       <Button variant="contained" color="primary" onClick={nextStep}>
