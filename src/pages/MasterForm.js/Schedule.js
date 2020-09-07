@@ -95,6 +95,10 @@ const Schedule= ({ daysList, hourHandler, selectedHour, tabPosition, setTabPosit
       <TabPanel value={tabPosition} selectedHour={selectedHour} hourHandler={hourHandler} index={3} />
       <TabPanel value={tabPosition} selectedHour={selectedHour} hourHandler={hourHandler} index={4} /> */}
       {/* </Fade> */}
+        <Spacer height="50px" />
+      <Button variant="contained" color="primary" onClick={nextStep}>
+          Confirmar
+        </Button>
     </Grid>
   )
 }

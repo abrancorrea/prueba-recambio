@@ -12,11 +12,15 @@ import {
 import { Spacer } from "../../common/StyledElements"
 import PersonalData from "./PersonalData"
 import Schedule from "./Schedule"
+import Checkout from "./Checkout"
 
 const dataInitialState = {
   dni: "",
   phone: "",
-  schedule: null,
+  schedule: {
+    day: null,
+    hour: null
+  },
 }
 
 const styles = makeStyles(()=>({
@@ -74,9 +78,9 @@ setData(data=> ({...data, schedule: {
             {step === 1 ? (
               <PersonalData data={data} setter={dataHandler} nextStep={()=>setStep(2)} classes={classes} />
             ) : step === 2 ? (
-              <Schedule daysList={daysList} hourHandler={hourHandler} selectedHour={data.schedule} tabPosition={tabPosition} setTabPosition={tabHandler} classes={classes}/>
+              <Schedule daysList={daysList} nextStep={()=>setStep(3)} hourHandler={hourHandler} selectedHour={data.schedule} tabPosition={tabPosition} setTabPosition={tabHandler} classes={classes}/>
             ) : step === 3 ? (
-              <h6> juajua 3</h6>
+              <Checkout classes={classes} data={data.schedule}/> 
             ) : null}
           </Card>
         </Grid>
