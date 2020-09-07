@@ -5,8 +5,8 @@ import {
   Grid,
   TextField,
   Button,
-  makeStyles,
   InputAdornment,
+  makeStyles,
   Fade,
 } from "@material-ui/core"
 import { Spacer } from "../../common/StyledElements"
@@ -18,7 +18,7 @@ const PersonalData = ({ data, setter, nextStep, classes }) => {
       container
       justify="center"
       direction="column"
-      className={classes.container}
+      className={classes.container} 
     >
       {/* <Fade in> */}
         <Typography variant="h6">
