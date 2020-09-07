@@ -4,7 +4,7 @@ import { Grid,Typography,Button } from '@material-ui/core'
 import { Spacer } from '../../common/StyledElements'
 import { useHistory } from 'react-router-dom'
 
-const Thankyou = ({classes}) => {
+const Thankyou = ({classes, rootStep}) => {
     const history = useHistory()
     return (
         <Grid
@@ -20,7 +20,7 @@ const Thankyou = ({classes}) => {
         <Spacer height="50px" />
         <Typography variant="body1" align="center"> Gracias por preferirnos</Typography>
         <Spacer height="50px" />        
-        <Button variant="contained" color="primary" onClick={()=> history.push("/")}> 
+        <Button variant="contained" color="primary" onClick={rootStep}> 
           Volver al inicio
         </Button>
       {/* </Fade> */}

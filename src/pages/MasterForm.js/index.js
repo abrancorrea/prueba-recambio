@@ -57,7 +57,7 @@ const MasterForm = () => {
   const [step, setStep] = useState(1)
   const [tabPosition, setTabPosition] = useState(0)
   const [data, setData] = useState(dataInitialState)
-  const [scheduleList, setScheduleList] = useState({})
+  const [scheduleList, setScheduleList] = useState([])
   const classes = styles()
   const daysList = days()
   const hoursMap = hoursArray()
@@ -80,7 +80,9 @@ const MasterForm = () => {
     setData(data => ({ ...data, schedule: { hour, day } }))
 
   const checkoutHandler = () => {
-    setScheduleList(list => ({ ...list, data }))
+    setScheduleList(list => ([ ...list, data ]))
+    setData(dataInitialState)
+    setTabPosition(0)
     setStep(4)
   }
   return (
@@ -122,7 +124,7 @@ const MasterForm = () => {
                 data={data.schedule}
               />
             ) : step === 4 ? (
-              <Thankyou classes={classes} />
+              <Thankyou classes={classes} rootStep={()=> setStep(1)} />
             ) : null}
           </Card>
         </Grid>
