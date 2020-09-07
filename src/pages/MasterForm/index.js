@@ -40,12 +40,20 @@ const MasterForm = () => {
     setStep(4)
   }
   const dataNextStep = () => !errorHandler() && setStep(2)
+  const ScheduleNextStep = () => !errorHandler() && setStep(3)
   const errorHandler = () => {
-    if (!Number(data.dni) || data.dni.length < 5)
-      setInputErrors({ input: "dni", message: "Dni must be numeric and more than 5 digits" })
-    else if (!Number(data.phone) || data.phone.length < 5)
-      setInputErrors({ input: "phone", message: "Phone must be numeric and more than 5 digits" })
-    else return false
+    if (step === 1) {
+      if (!Number(data.dni) || data.dni.length < 5)
+        setInputErrors({ input: "dni", message: "El Dni debe ser numerico y de mas de 5 caracteres" })
+      else if (!Number(data.phone) || data.phone.length < 5)
+        setInputErrors({ input: "phone", message: "El telefono debe ser numerico y de mas de 5 caracteres" })
+      else return false
+    } else if (step === 2 && !data.schedule.day) {
+      setInputErrors({ input: "schedule", message: "Debe seleccionar una opcion para poder continuar" })
+    } else {
+      setInputErrors({})
+      return false
+    }
     return true
   }
   return (
@@ -69,9 +77,10 @@ const MasterForm = () => {
               />
             ) : step === 2 ? (
               <Schedule
+                errors={inputErrors}
                 daysList={daysList}
                 availableHours={availableHours}
-                nextStep={() => setStep(3)}
+                nextStep={ScheduleNextStep}
                 hourHandler={hourHandler}
                 selectedHour={data.schedule}
                 tabPosition={tabPosition}

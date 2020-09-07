@@ -44,6 +44,7 @@ function TabPanel({
 }
 
 const Schedule = ({
+  errors,
   daysList,
   hourHandler,
   selectedHour,
@@ -95,6 +96,12 @@ const Schedule = ({
             index={i}
           />
         ))}
+        <Spacer height="5px" />
+        {Object.keys(errors).length && errors.input === "schedule" ? (
+          <Typography variant="body2" color="error">
+            {errors.message}
+          </Typography>
+        ) : null}
         <Spacer height="50px" />
         <Button variant="contained" color="primary" onClick={nextStep}>
           Confirmar
@@ -114,6 +121,7 @@ Schedule.propTypes = {
   hoursMap: PropTypes.array.isRequired,
   classes: PropTypes.any.isRequired,
   scheduleList: PropTypes.array.isRequired,
+  errors: PropTypes.object.isRequired,
 }
 
 export default Schedule
