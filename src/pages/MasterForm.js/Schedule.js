@@ -29,19 +29,18 @@ function TabPanel(props) {
       aria-labelledby={`tab-${index}`}
       {...other}
     >
-    {/* <Typography>{`${day.dayName} ${day.monthDate}`}</Typography> */}
       {value === index && (
         <List component="nav" aria-label="list schedule hours">
         <ListItem
           button
-          selected={selectedHour.hour === "7:00 a 9:00"}
+          selected={selectedHour.hour === "7:00 a 9:00" && selectedHour.day === `${day.dayName} ${day.monthDate}`}
           onClick={(event) => hourHandler(event, "7:00 a 9:00", `${day.dayName} ${day.monthDate}`)}
         >
           <ListItemText primary="7:00 a 9:00" />
         </ListItem>
         <ListItem
           button
-          selected={selectedHour.hour === "9:00 a 11:00"}
+          selected={selectedHour.hour === "9:00 a 11:00" && selectedHour.day === `${day.dayName} ${day.monthDate}`}
           onClick={(event) => hourHandler(event, "9:00 a 11:00",`${day.dayName} ${day.monthDate}`)}
         >
           <ListItemText primary="9:00 a 11:00" />

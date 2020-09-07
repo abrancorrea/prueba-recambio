@@ -12,7 +12,7 @@ import {
 import { Spacer } from "../../common/StyledElements"
 
 
-const Checkout = ({ data, classes }) => {
+const Checkout = ({ data, classes, nextStep}) => {
   return (
     <Grid
       container
@@ -28,7 +28,7 @@ const Checkout = ({ data, classes }) => {
         <Typography>Fecha: {data.day} </Typography>
         <Typography>Hora: {data.hour} </Typography>
         <Spacer height="50px" />        
-        <Button variant="contained" color="primary"> {/*onClick={nextStep}>*/}
+        <Button variant="contained" color="primary" onClick={nextStep}> 
           Siguiente
         </Button>
       {/* </Fade> */}

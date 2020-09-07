@@ -13,6 +13,7 @@ import { Spacer } from "../../common/StyledElements"
 import PersonalData from "./PersonalData"
 import Schedule from "./Schedule"
 import Checkout from "./Checkout"
+import Thankyou from './Thankyou'
 
 const dataInitialState = {
   dni: "",
@@ -80,8 +81,10 @@ setData(data=> ({...data, schedule: {
             ) : step === 2 ? (
               <Schedule daysList={daysList} nextStep={()=>setStep(3)} hourHandler={hourHandler} selectedHour={data.schedule} tabPosition={tabPosition} setTabPosition={tabHandler} classes={classes}/>
             ) : step === 3 ? (
-              <Checkout classes={classes} data={data.schedule}/> 
-            ) : null}
+              <Checkout classes={classes} nextStep={()=>setStep(4)} data={data.schedule}/> 
+            ) : step === 4 ? (
+                <Thankyou classes={classes} /> 
+              ) : null}
           </Card>
         </Grid>
       </Grid>
