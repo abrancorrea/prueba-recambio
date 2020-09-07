@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from 'prop-types'
 
 import { Typography, Grid, TextField, Button, InputAdornment, Fade } from "@material-ui/core"
 import { Spacer } from "../../common/StyledElements"
@@ -39,6 +40,14 @@ const PersonalData = ({ errors, data, setter, nextStep, classes }) => {
       </Grid>
     </Fade>
   )
+}
+
+PersonalData.propTypes = {
+  errors: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
+  setter: PropTypes.func.isRequired,
+  nextStep: PropTypes.func.isRequired,
+  classes: PropTypes.any.isRequired
 }
 
 export default PersonalData

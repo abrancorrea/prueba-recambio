@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 import { Grid, Typography, Button, Fade } from "@material-ui/core"
 import { Spacer } from "../../common/StyledElements"
@@ -20,6 +21,11 @@ const Thankyou = ({ classes, rootStep }) => {
       </Grid>
     </Fade>
   )
+}
+
+Thankyou.propTypes = {
+  classes: PropTypes.any.isRequired,
+  rootStep: PropTypes.func.isRequired,
 }
 
 export default Thankyou

@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from "prop-types"
 
 import { Typography, Grid, Button, List, ListItem, ListItemText, AppBar, Tabs, Tab, Fade } from "@material-ui/core"
 import { Spacer } from "../../common/StyledElements"
@@ -101,6 +102,18 @@ const Schedule = ({
       </Grid>
     </Fade>
   )
+}
+Schedule.propTypes = {
+  daysList: PropTypes.array.isRequired,
+  hourHandler: PropTypes.func.isRequired,
+  selectedHour: PropTypes.object.isRequired,
+  tabPosition: PropTypes.number.isRequired,
+  setTabPosition: PropTypes.func.isRequired,
+  nextStep: PropTypes.func.isRequired,
+  availableHours: PropTypes.array.isRequired,
+  hoursMap: PropTypes.array.isRequired,
+  classes: PropTypes.any.isRequired,
+  scheduleList: PropTypes.array.isRequired,
 }
 
 export default Schedule
