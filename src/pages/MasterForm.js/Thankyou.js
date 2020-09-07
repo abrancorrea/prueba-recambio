@@ -2,10 +2,8 @@ import React from 'react'
 
 import { Grid,Typography,Button } from '@material-ui/core'
 import { Spacer } from '../../common/StyledElements'
-import { useHistory } from 'react-router-dom'
 
 const Thankyou = ({classes, rootStep}) => {
-    const history = useHistory()
     return (
         <Grid
       container

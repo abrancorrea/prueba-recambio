@@ -10,7 +10,7 @@ import {
 import { Spacer } from "../../common/StyledElements"
 
 
-const PersonalData = ({ data, setter, nextStep, classes }) => {
+const PersonalData = ({ errors, data, setter, nextStep, classes }) => {
   return (
     <Grid
       container
@@ -24,22 +24,24 @@ const PersonalData = ({ data, setter, nextStep, classes }) => {
         </Typography>
         <Spacer height="50px" />
         <TextField
+        error={Object.keys(errors).length && errors.input ==="dni"}
           variant="outlined"
           label="Dni"
           name="dni"
           value={data.dni}
           onChange={setter}
-          helperText="Sin puntos ni guiones"
+          helperText={Object.keys(errors).length && errors.input === "dni" ? errors.message :"Sin puntos ni guiones"}
         />
         <Spacer height="50px" />
 
         <TextField
-          variant="outlined"
+        error={Object.keys(errors).length && errors.input ==="phone"}
+        variant="outlined"
           label="Numero de movil"
           name="phone"
           value={data.phone}
           onChange={setter}
-          helperText="999999999"
+          helperText={Object.keys(errors).length&& errors.input === "phone" ? errors.message :"999999999"}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">+52</InputAdornment>

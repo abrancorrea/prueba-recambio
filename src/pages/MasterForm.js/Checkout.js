@@ -25,7 +25,7 @@ const Checkout = ({ data, classes, hoursMap, nextStep}) => {
         <Typography>Hora: {hoursMap.find(hour => hour.value === data.hour).nameToShow} </Typography>
         <Spacer height="50px" />        
         <Button variant="contained" color="primary" onClick={nextStep}> 
-          Siguiente
+          Confirmar
         </Button>
       {/* </Fade> */}
     </Grid>

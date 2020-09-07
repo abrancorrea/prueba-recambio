@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Container,
-  Card,
-  Grid,
-  makeStyles,
-} from "@material-ui/core"
+import { AppBar, Toolbar, Typography, Container, Card, Grid, makeStyles } from "@material-ui/core"
 import { Spacer } from "../../common/StyledElements"
 import PersonalData from "./PersonalData"
 import Schedule from "./Schedule"
@@ -58,32 +50,36 @@ const MasterForm = () => {
   const [tabPosition, setTabPosition] = useState(0)
   const [data, setData] = useState(dataInitialState)
   const [scheduleList, setScheduleList] = useState([])
+  const [inputErrors, setInputErrors] = useState({})
   const classes = styles()
   const daysList = days()
   const hoursMap = hoursArray()
 
   useEffect(() => {
     availableHours.length === 0 &&
-      axios
-        .get(
-          "https://5f4928b88e271c001650c73d.mockapi.io/AGENDAMIENTO/CONSULTARDISPONIBILIDAD"
-        )
-        .then(({ data }) => {
-          setAvailableHours(data)
-        })
+      axios.get("https://5f4928b88e271c001650c73d.mockapi.io/AGENDAMIENTO/CONSULTARDISPONIBILIDAD").then(({ data }) => {
+        setAvailableHours(data)
+      })
   }, [availableHours])
 
-  const dataHandler = ({ target }) =>
-    setData(data => ({ ...data, [target.name]: target.value }))
+  const dataHandler = ({ target }) => setData(data => ({ ...data, [target.name]: target.value }))
   const tabHandler = (e, newValue) => setTabPosition(newValue)
-  const hourHandler = (e, hour, day) =>
-    setData(data => ({ ...data, schedule: { hour, day } }))
-
+  const hourHandler = (e, hour, day) => setData(data => ({ ...data, schedule: { hour, day } }))
   const checkoutHandler = () => {
-    setScheduleList(list => ([ ...list, data ]))
+    setScheduleList(list => [...list, data])
     setData(dataInitialState)
     setTabPosition(0)
+    setInputErrors({})
     setStep(4)
+  }
+const dataNextStep = () =>{ if(!errorHandler())  setStep(2)}
+  const errorHandler = () => {
+      if (!Number(data.dni) || data.dni.length < 5)
+      setInputErrors({input:"dni", message: "Dni must be numeric and more than 5 digits"})
+      else if (!Number(data.phone) || data.phone.length < 5)
+      setInputErrors({input:"phone", message: "Phone must be numeric and more than 5 digits"})
+      else return false
+    return true
   }
   return (
     <Container disableGutters maxWidth={false}>
@@ -97,12 +93,7 @@ const MasterForm = () => {
         <Grid item xs={11} sm={8} md={6}>
           <Card raised>
             {step === 1 ? (
-              <PersonalData
-                data={data}
-                setter={dataHandler}
-                nextStep={() => setStep(2)}
-                classes={classes}
-              />
+              <PersonalData errors={inputErrors} data={data} setter={dataHandler} nextStep={dataNextStep} classes={classes} />
             ) : step === 2 ? (
               <Schedule
                 daysList={daysList}
@@ -117,14 +108,9 @@ const MasterForm = () => {
                 scheduleList={scheduleList}
               />
             ) : step === 3 ? (
-              <Checkout
-                hoursMap={hoursMap}
-                classes={classes}
-                nextStep={checkoutHandler}
-                data={data.schedule}
-              />
+              <Checkout hoursMap={hoursMap} classes={classes} nextStep={checkoutHandler} data={data.schedule} />
             ) : step === 4 ? (
-              <Thankyou classes={classes} rootStep={()=> setStep(1)} />
+              <Thankyou classes={classes} rootStep={() => setStep(1)} />
             ) : null}
           </Card>
         </Grid>
