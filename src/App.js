@@ -2,7 +2,7 @@ import React from "react"
 import { Route, Switch } from "react-router-dom"
 
 import Welcome from "./pages/Welcome"
-import MasterForm from "./pages/MasterForm.js"
+import MasterForm from "./pages/MasterForm"
 
 import "./App.css"
 
