@@ -13,10 +13,9 @@ const dataInitialState = {
   phone: "",
   schedule: { day: null, hour: null },
 }
-
 const styles = makeStyles(() => ({
   container: {
-    padding: "25px 40px",
+    padding:  "25px"
   },
 }))
 

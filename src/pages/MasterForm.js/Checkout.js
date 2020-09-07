@@ -17,6 +17,10 @@ const Checkout = ({ data, classes, hoursMap, nextStep}) => {
       className={classes.container} 
     >
       {/* <Fade in> */}
+      <Typography variant="h6">
+          Confirma tu visita
+        </Typography>
+        <Spacer height="150px" />
         <Typography variant="h6">
           Se agendará el siguiente recambio: 
         </Typography>

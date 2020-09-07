@@ -26,7 +26,7 @@ const PersonalData = ({ errors, data, setter, nextStep, classes }) => {
         <TextField
         error={Object.keys(errors).length && errors.input ==="dni"}
           variant="outlined"
-          label="Dni"
+          label="Dni del titular de la tarjeta"
           name="dni"
           value={data.dni}
           onChange={setter}

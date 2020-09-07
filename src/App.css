@@ -3,6 +3,8 @@
   min-height: 100vh;
 }
 
-
+@media (max-width: 599.95px){
+  .MuiTabs-scrollButtonsDesktop {display: inline-flex !important}
+}
 
 
